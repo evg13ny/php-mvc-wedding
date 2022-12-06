@@ -1,0 +1,1 @@
+<h2>Products page view</h2>
