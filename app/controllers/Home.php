@@ -1,8 +1,10 @@
 <?php
 
-class Home extends Controller
+class Home
 {
-    public function index($a = "", $b = "", $c = "")
+    use Controller;
+
+    public function index()
     {
         echo "This is home controller";
 
