@@ -1,7 +1,7 @@
 <?php
 
 if ($_SERVER["SERVER_NAME"] == "localhost") {
-    define("DBNAME", "php-mvc_test_db");
+    define("DBNAME", "php-mvc-wedding");
     define("DBHOST", "localhost");
     define("DBUSER", "root");
     define("DBPASS", "");
