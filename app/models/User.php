@@ -24,9 +24,7 @@ class User
             $this->errors["email"] = "Email is already in use";
         }
 
-        if (empty($data["password"])) {
-            $this->errors["password"] = "Password is required";
-        }
+        if (!$id && empty($data["password"])) $this->errors["password"] = "Password is required";
 
         if (empty($data["username"])) {
             $this->errors["username"] = "Username is required";
@@ -34,11 +32,24 @@ class User
             $this->errors["username"] = "There are wrong symbols in the username";
         }
 
-        if (empty($this->errors)) {
-            return true;
-        }
+        if (empty($this->errors)) return true;
 
         return false;
+    }
+
+    public function authenticate($row)
+    {
+        $_SESSION["USER"] = $row;
+    }
+
+    public function logout()
+    {
+        if (!empty($_SESSION["USER"])) unset($_SESSION["USER"]);
+    }
+
+    public function logged_in()
+    {
+        return !empty($_SESSION["USER"]) ? true : false;
     }
 
     public function create_table()
