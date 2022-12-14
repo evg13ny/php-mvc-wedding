@@ -6,6 +6,9 @@ class Home
 
     public function index()
     {
-        $this->view("home");
+        $contact = new Contact_model;
+        $data["social_links"] = $contact->first(["id" => 1]);
+
+        $this->view("home", $data);
     }
 }

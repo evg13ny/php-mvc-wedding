@@ -73,8 +73,7 @@
                             <div class="d-inline-block border-top border-bottom border-light py-3 px-4">
                                 <h3 class="text-uppercase font-weight-normal text-white m-0" style="letter-spacing: 2px;">We're getting married</h3>
                             </div>
-                            <button type="button" class="btn-play mx-auto" data-toggle="modal"
-                                data-src="https://www.youtube.com/embed/DWRcNpR6Kdc" data-target="#videoModal">
+                            <button type="button" class="btn-play mx-auto" data-toggle="modal" data-src="https://www.youtube.com/embed/DWRcNpR6Kdc" data-target="#videoModal">
                                 <span></span>
                             </button>
                         </div>
@@ -88,8 +87,7 @@
                             <div class="d-inline-block border-top border-bottom border-light py-3 px-4">
                                 <h3 class="text-uppercase font-weight-normal text-white m-0" style="letter-spacing: 2px;">We're getting married</h3>
                             </div>
-                            <button type="button" class="btn-play mx-auto" data-toggle="modal"
-                                data-src="https://www.youtube.com/embed/DWRcNpR6Kdc" data-target="#videoModal">
+                            <button type="button" class="btn-play mx-auto" data-toggle="modal" data-src="https://www.youtube.com/embed/DWRcNpR6Kdc" data-target="#videoModal">
                                 <span></span>
                             </button>
                         </div>
@@ -118,10 +116,10 @@
                 <div class="modal-body">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
-                    </button>        
+                    </button>
                     <!-- 16:9 aspect ratio -->
                     <div class="embed-responsive embed-responsive-16by9">
-                        <iframe class="embed-responsive-item" src="" id="video"  allowscriptaccess="always" allow="autoplay"></iframe>
+                        <iframe class="embed-responsive-item" src="" id="video" allowscriptaccess="always" allow="autoplay"></iframe>
                     </div>
                 </div>
             </div>
@@ -454,10 +452,10 @@
                         <form>
                             <div class="form-row">
                                 <div class="form-group col-sm-6">
-                                    <input type="text" class="form-control bg-secondary border-0 py-4 px-3" placeholder="Your Name"/>
+                                    <input type="text" class="form-control bg-secondary border-0 py-4 px-3" placeholder="Your Name" />
                                 </div>
                                 <div class="form-group col-sm-6">
-                                    <input type="email" class="form-control bg-secondary border-0 py-4 px-3" placeholder="Your Email"/>
+                                    <input type="email" class="form-control bg-secondary border-0 py-4 px-3" placeholder="Your Email" />
                                 </div>
                             </div>
                             <div class="form-row">
@@ -501,15 +499,15 @@
                 <i class="far fa-heart text-white"></i>
             </div>
             <div class="d-flex justify-content-center mb-4">
-                <a class="btn btn-lg btn-outline-light btn-lg-square mr-2" href="#"><i class="fab fa-twitter"></i></a>
-                <a class="btn btn-lg btn-outline-light btn-lg-square mr-2" href="#"><i class="fab fa-facebook-f"></i></a>
-                <a class="btn btn-lg btn-outline-light btn-lg-square mr-2" href="#"><i class="fab fa-linkedin-in"></i></a>
-                <a class="btn btn-lg btn-outline-light btn-lg-square" href="#"><i class="fab fa-instagram"></i></a>
+                <a class="btn btn-lg btn-outline-light btn-lg-square mr-2" href="<?= $social_links->twitter_link ?? "#" ?>" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a class="btn btn-lg btn-outline-light btn-lg-square mr-2" href="<?= $social_links->facebook_link ?? "#" ?>" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a class="btn btn-lg btn-outline-light btn-lg-square mr-2" href="<?= $social_links->linkedin_link ?? "#" ?>" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                <a class="btn btn-lg btn-outline-light btn-lg-square" href="<?= $social_links->instagram_link ?? "#" ?>" target="_blank"><i class="fab fa-instagram"></i></a>
             </div>
             <div class="d-flex justify-content-center py-2">
-                <p class="text-white" href="#">info@example.com</p>
+                <p class="text-white" href="#"><?= $social_links->email ?? "email@mail.com" ?></p>
                 <span class="px-3">|</span>
-                <p class="text-white" href="#">+012 345 6789</p>
+                <p class="text-white" href="#"><?= $social_links->phone ?? "#" ?></p>
                 <span class="px-3">|</span>
                 <a class="text-white" href="<?= ROOT ?>/admin">Admin</a>
             </div>
