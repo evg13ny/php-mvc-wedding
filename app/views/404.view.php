@@ -1,1 +1,1 @@
-<h2>View file not found</h2>
+<h2>404 page not found</h2>

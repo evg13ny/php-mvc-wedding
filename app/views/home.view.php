@@ -248,42 +248,18 @@
             <i class="far fa-heart text-white"></i>
         </div>
         <div class="owl-carousel gallery-carousel">
-            <div class="gallery-item">
-                <img class="img-fluid w-100" src="<?= ROOT ?>/assets/img/gallery-1.jpg" alt="">
-                <a href="<?= ROOT ?>/assets/img/gallery-1.jpg" data-lightbox="gallery">
-                    <i class="fa fa-2x fa-plus text-white"></i>
-                </a>
-            </div>
-            <div class="gallery-item">
-                <img class="img-fluid w-100" src="<?= ROOT ?>/assets/img/gallery-2.jpg" alt="">
-                <a href="<?= ROOT ?>/assets/img/gallery-2.jpg" data-lightbox="gallery">
-                    <i class="fa fa-2x fa-plus text-white"></i>
-                </a>
-            </div>
-            <div class="gallery-item">
-                <img class="img-fluid w-100" src="<?= ROOT ?>/assets/img/gallery-3.jpg" alt="">
-                <a href="<?= ROOT ?>/assets/img/gallery-3.jpg" data-lightbox="gallery">
-                    <i class="fa fa-2x fa-plus text-white"></i>
-                </a>
-            </div>
-            <div class="gallery-item">
-                <img class="img-fluid w-100" src="<?= ROOT ?>/assets/img/gallery-4.jpg" alt="">
-                <a href="<?= ROOT ?>/assets/img/gallery-4.jpg" data-lightbox="gallery">
-                    <i class="fa fa-2x fa-plus text-white"></i>
-                </a>
-            </div>
-            <div class="gallery-item">
-                <img class="img-fluid w-100" src="<?= ROOT ?>/assets/img/gallery-5.jpg" alt="">
-                <a href="<?= ROOT ?>/assets/img/gallery-5.jpg" data-lightbox="gallery">
-                    <i class="fa fa-2x fa-plus text-white"></i>
-                </a>
-            </div>
-            <div class="gallery-item">
-                <img class="img-fluid w-100" src="<?= ROOT ?>/assets/img/gallery-6.jpg" alt="">
-                <a href="<?= ROOT ?>/assets/img/gallery-6.jpg" data-lightbox="gallery">
-                    <i class="fa fa-2x fa-plus text-white"></i>
-                </a>
-            </div>
+
+            <?php if (!empty($gallery)) : ?>
+                <?php foreach ($gallery as $image_row) : ?>
+                    <div class="gallery-item">
+                        <img class="img-fluid w-100" style="object-fit: cover; height: 275px;" src="<?= get_image($image_row->image) ?>" alt="">
+                        <a href="<?= get_image($image_row->image) ?>" data-lightbox="gallery">
+                            <i class="fa fa-2x fa-plus text-white"></i>
+                        </a>
+                    </div>
+                <?php endforeach; ?>
+            <?php endif; ?>
+
         </div>
     </div>
     <!-- Gallery End -->

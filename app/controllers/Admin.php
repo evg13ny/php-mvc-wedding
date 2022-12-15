@@ -89,4 +89,62 @@ class Admin
 
         $this->view("admin/contact", $data);
     }
+
+    public function gallery($action = null, $id = null)
+    {
+        $user = new User();
+        $gallery = new Gallery_model;
+
+        // $gallery->create_table();
+
+        if (!$user->logged_in()) redirect("login");
+
+        $data["action"] = $action;
+        $data["rows"] = $gallery->findAll();
+
+        if ($action == "add") {
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                if ($gallery->validate($_FILES)) {
+                    $destination = $folder . time() . $_FILES["image"]["name"];
+                    move_uploaded_file($_FILES["image"]["tmp_name"], $destination);
+                    $_POST["image"] = $destination;
+                    $gallery->insert($_POST);
+                    redirect("admin/gallery");
+                }
+            }
+        } elseif ($action == "edit") {
+            $data["row"] = $gallery->first(["id" => $id]);
+
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                if ($gallery->validate($_FILES, $id)) {
+                    $destination = $folder . time() . $_FILES["image"]["name"];
+                    move_uploaded_file($_FILES["image"]["tmp_name"], $destination);
+                    $_POST["image"] = $destination;
+                    $gallery->update($id, $_POST);
+
+                    if (file_exists($data["row"]->image)) {
+                        unlink($data["row"]->image);
+                    }
+
+                    redirect("admin/gallery");
+                }
+            }
+        } elseif ($action == "delete") {
+            $data["row"] = $gallery->first(["id" => $id]);
+
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                $gallery->delete($id);
+
+                if (file_exists($data["row"]->image)) {
+                    unlink($data["row"]->image);
+                }
+
+                redirect("admin/gallery");
+            }
+        }
+
+        $data["errors"] = $gallery->errors;
+
+        $this->view("admin/gallery", $data);
+    }
 }
