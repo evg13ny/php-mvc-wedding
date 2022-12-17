@@ -5,6 +5,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title><?= APP_NAME ?> - Dashboard</title>
+
+  <!-- Font Awesome -->
+  <link href="<?= ROOT ?>/assets/fontawesome/css/all.min.css" rel="stylesheet">
+
   <link href="<?= ROOT ?>/assets/css/bootstrap.min.css" rel="stylesheet">
 
   <style>

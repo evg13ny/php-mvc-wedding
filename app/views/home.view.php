@@ -136,42 +136,54 @@
                 <h1 class="font-secondary display-4">Groom & Bride</h1>
                 <i class="far fa-heart text-dark"></i>
             </div>
-            <div class="row m-0 mb-4 mb-md-0 pb-2 pb-md-0">
-                <div class="col-md-6 p-0 text-center text-md-right">
-                    <div class="h-100 d-flex flex-column justify-content-center bg-secondary p-5">
-                        <h3 class="mb-3">The Groom</h3>
-                        <p>Lorem elitr magna stet rebum dolores sed. Est stet labore est lorem lorem at amet sea, eos tempor rebum, labore amet ipsum sea lorem, stet rebum eirmod amet. Kasd clita kasd stet amet est dolor elitr.</p>
-                        <h3 class="font-secondary font-weight-normal text-muted mb-3"><i class="fa fa-male text-primary pr-3"></i>Jack</h3>
-                        <div class="position-relative">
-                            <a class="btn btn-outline-primary btn-square mr-1" href="#"><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-outline-primary btn-square mr-1" href="#"><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-outline-primary btn-square mr-1" href="#"><i class="fab fa-linkedin-in"></i></a>
-                            <a class="btn btn-outline-primary btn-square" href="#"><i class="fab fa-instagram"></i></a>
+
+            <?php if (!empty($about)) : $num = 0; ?>
+                <?php foreach ($about as $row) : $num++; ?>
+                    <?php if ($num % 2) :  ?>
+
+                        <div class="row m-0 mb-4 mb-md-0 pb-2 pb-md-0">
+                            <div class="col-md-6 p-0 text-center text-md-right">
+                                <div class="h-100 d-flex flex-column justify-content-center bg-secondary p-5">
+                                    <h3 class="mb-3"><?= esc($row->title) ?></h3>
+                                    <p><?= esc($row->about) ?></p>
+                                    <h3 class="font-secondary font-weight-normal text-muted mb-3"><i class="fa fa-<?= esc($row->icon) ?> text-primary pr-3"></i><?= esc($row->name) ?></h3>
+                                    <div class="position-relative">
+                                        <a class="btn btn-outline-primary btn-square mr-1" href="<?= esc($row->twitter_link) ?>"><i class="fab fa-twitter"></i></a>
+                                        <a class="btn btn-outline-primary btn-square mr-1" href="<?= esc($row->facebook_link) ?>"><i class="fab fa-facebook-f"></i></a>
+                                        <a class="btn btn-outline-primary btn-square mr-1" href="<?= esc($row->linkedin_link) ?>"><i class="fab fa-linkedin-in"></i></a>
+                                        <a class="btn btn-outline-primary btn-square" href="<?= esc($row->instagram_link) ?>"><i class="fab fa-instagram"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 p-0" style="min-height: 400px;">
+                                <img class="position-absolute w-100 h-100" src="<?= get_image($row->image) ?>" style="object-fit: cover;">
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="col-md-6 p-0" style="min-height: 400px;">
-                    <img class="position-absolute w-100 h-100" src="<?= ROOT ?>/assets/img/about-1.jpg" style="object-fit: cover;">
-                </div>
-            </div>
-            <div class="row m-0">
-                <div class="col-md-6 p-0" style="min-height: 400px;">
-                    <img class="position-absolute w-100 h-100" src="<?= ROOT ?>/assets/img/about-2.jpg" style="object-fit: cover;">
-                </div>
-                <div class="col-md-6 p-0 text-center text-md-left">
-                    <div class="h-100 d-flex flex-column justify-content-center bg-secondary p-5">
-                        <h3 class="mb-3">The Bride</h3>
-                        <p>Lorem elitr magna stet rebum dolores sed. Est stet labore est lorem lorem at amet sea, eos tempor rebum, labore amet ipsum sea lorem, stet rebum eirmod amet. Kasd clita kasd stet amet est dolor elitr.</p>
-                        <h3 class="font-secondary font-weight-normal text-muted mb-3"><i class="fa fa-female text-primary pr-3"></i>Rose</h3>
-                        <div class="position-relative">
-                            <a class="btn btn-outline-primary btn-square mr-1" href="#"><i class="fab fa-instagram"></i></a>
-                            <a class="btn btn-outline-primary btn-square mr-1" href="#"><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-outline-primary btn-square mr-1" href="#"><i class="fab fa-linkedin-in"></i></a>
-                            <a class="btn btn-outline-primary btn-square" href="#"><i class="fab fa-instagram"></i></a>
+
+                    <?php else : ?>
+                        <div class="row m-0">
+                            <div class="col-md-6 p-0" style="min-height: 400px;">
+                                <img class="position-absolute w-100 h-100" src="<?= get_image($row->image) ?>" style="object-fit: cover;">
+                            </div>
+                            <div class="col-md-6 p-0 text-center text-md-left">
+                                <div class="h-100 d-flex flex-column justify-content-center bg-secondary p-5">
+                                    <h3 class="mb-3"><?= esc($row->title) ?></h3>
+                                    <p><?= esc($row->about) ?></p>
+                                    <h3 class="font-secondary font-weight-normal text-muted mb-3"><i class="fa fa-<?= esc($row->icon) ?> text-primary pr-3"></i><?= esc($row->name) ?></h3>
+                                    <div class="position-relative">
+                                        <a class="btn btn-outline-primary btn-square mr-1" href="<?= esc($row->twitter_link) ?>"><i class="fab fa-twitter"></i></a>
+                                        <a class="btn btn-outline-primary btn-square mr-1" href="<?= esc($row->facebook_link) ?>"><i class="fab fa-facebook-f"></i></a>
+                                        <a class="btn btn-outline-primary btn-square mr-1" href="<?= esc($row->linkedin_link) ?>"><i class="fab fa-linkedin-in"></i></a>
+                                        <a class="btn btn-outline-primary btn-square" href="<?= esc($row->instagram_link) ?>"><i class="fab fa-instagram"></i></a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-            </div>
+
+                    <?php endif; ?>
+                <?php endforeach; ?>
+            <?php endif; ?>
+
         </div>
     </div>
     <!-- About End -->

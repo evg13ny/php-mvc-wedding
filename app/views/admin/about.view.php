@@ -3,7 +3,7 @@
 <?php if ($action == "add") : ?>
 
     <div class="col-md-6 mx-auto p-3 text-center">
-        <h4>Add new story</h4>
+        <h4>Add new about</h4>
 
         <?php if (!empty($errors)) : ?>
             <div class="alert alert-danger text-center"><?= implode("<br>", $errors) ?></div>
@@ -21,16 +21,25 @@
             <br>
 
             <input value="<?= old_value("title") ?>" type="text" name="title" class="form-control mt-3" placeholder="Title">
-            <input value="<?= old_value("date") ?>" type="date" name="date" class="form-control mt-3" placeholder="Date">
+            <input value="<?= old_value("name") ?>" type="text" name="name" class="form-control mt-3" placeholder="Name">
 
-            <textarea name="description" cols="30" rows="5" class="form-control my-3" placeholder="Story"><?= old_value("description") ?></textarea>
+            <textarea name="about" cols="30" rows="5" class="form-control my-3" placeholder="About"><?= old_value("about") ?></textarea>
+
+            <small>Please enter male or female</small>
+            <input value="<?= old_value("icon") ?>" type="text" name="icon" class="form-control my-3" placeholder="Icon class">
+
+            <small>Please enter full path e.g. https://www.socialnetwork.com/yourlogin</small>
+            <input value="<?= old_value("twitter_link") ?>" type="text" name="twitter_link" class="form-control mt-3" placeholder="Twitter link">
+            <input value="<?= old_value("facebook_link") ?>" type="text" name="facebook_link" class="form-control mt-3" placeholder="Facebook link">
+            <input value="<?= old_value("linkedin_link") ?>" type="text" name="linkedin_link" class="form-control mt-3" placeholder="Linkedin link">
+            <input value="<?= old_value("instagram_link") ?>" type="text" name="instagram_link" class="form-control my-3" placeholder="Instagram link">
 
             <label class="text-start d-block">List order:</label>
             <input value="<?= old_value("list_order", 0) ?>" type="number" min="0" name="list_order" class="form-control my-3">
 
             <button class="btn btn-success my-3">Save</button>
 
-            <a href="<?= ROOT ?>/admin/story">
+            <a href="<?= ROOT ?>/admin/about">
                 <button class="btn btn-secondary my-3" type="button">Back</button>
             </a>
         </form>
@@ -39,7 +48,7 @@
 <?php elseif ($action == "edit") : ?>
 
     <div class="col-md-6 mx-auto p-3 text-center">
-        <h4>Edit story record</h4>
+        <h4>Edit about record</h4>
 
         <?php if (!empty($errors)) : ?>
             <div class="alert alert-danger text-center"><?= implode("<br>", $errors) ?></div>
@@ -58,16 +67,25 @@
                 <br>
 
                 <input value="<?= old_value("title", $row->title) ?>" type="text" name="title" class="form-control mt-3" placeholder="Title">
-                <input value="<?= old_value("date", $row->date) ?>" type="date" name="date" class="form-control mt-3" placeholder="Date">
+                <input value="<?= old_value("name", $row->name) ?>" type="text" name="name" class="form-control mt-3" placeholder="Name">
 
-                <textarea name="description" cols="30" rows="5" class="form-control my-3" placeholder="Story"><?= old_value('description', $row->description) ?></textarea>
+                <textarea name="about" cols="30" rows="5" class="form-control my-3" placeholder="About"><?= old_value("about", $row->about) ?></textarea>
+
+                <small>Please enter male or female</small>
+                <input value="<?= old_value("icon", $row->icon) ?>" type="text" name="icon" class="form-control my-3" placeholder="Icon class">
+
+                <small>Please enter full path e.g. https://www.socialnetwork.com/yourlogin</small>
+                <input value="<?= old_value("twitter_link", $row->twitter_link) ?>" type="text" name="twitter_link" class="form-control mt-3" placeholder="Twitter link">
+                <input value="<?= old_value("facebook_link", $row->facebook_link) ?>" type="text" name="facebook_link" class="form-control mt-3" placeholder="Facebook link">
+                <input value="<?= old_value("linkedin_link", $row->linkedin_link) ?>" type="text" name="linkedin_link" class="form-control mt-3" placeholder="Linkedin link">
+                <input value="<?= old_value("instagram_link", $row->instagram_link) ?>" type="text" name="instagram_link" class="form-control my-3" placeholder="Instagram link">
 
                 <label class="text-start d-block">List order:</label>
                 <input value="<?= old_value("list_order", $row->list_order) ?>" type="number" min="0" name="list_order" class="form-control my-3">
 
                 <button class="btn btn-success my-3">Save</button>
 
-                <a href="<?= ROOT ?>/admin/story">
+                <a href="<?= ROOT ?>/admin/about">
                     <button class="btn btn-secondary my-3" type="button">Back</button>
                 </a>
             </form>
@@ -77,7 +95,7 @@
                 Record not found
             </div>
 
-            <a href="<?= ROOT ?>/admin/story">
+            <a href="<?= ROOT ?>/admin/about">
                 <button class="btn btn-secondary my-3" type="button">Back</button>
             </a>
         <?php endif; ?>
@@ -87,7 +105,7 @@
 <?php elseif ($action == "delete") : ?>
 
     <div class="col-md-6 mx-auto p-3 text-center">
-        <h4>Delete story</h4>
+        <h4>Delete about</h4>
 
         <?php if (!empty($errors)) : ?>
             <div class="alert alert-danger text-center"><?= implode("<br>", $errors) ?></div>
@@ -108,7 +126,7 @@
 
                 <button class="btn btn-danger my-3">Delete</button>
 
-                <a href="<?= ROOT ?>/admin/story">
+                <a href="<?= ROOT ?>/admin/about">
                     <button class="btn btn-secondary my-3" type="button">Back</button>
                 </a>
             </form>
@@ -118,7 +136,7 @@
                 Record not found
             </div>
 
-            <a href="<?= ROOT ?>/admin/story">
+            <a href="<?= ROOT ?>/admin/about">
                 <button class="btn btn-secondary my-3" type="button">Back</button>
             </a>
         <?php endif; ?>
@@ -128,8 +146,8 @@
 <?php else : ?>
 
     <h4>
-        Story
-        <a href="<?= ROOT ?>/admin/story/add">
+        About
+        <a href="<?= ROOT ?>/admin/about/add">
             <button class="btn btn-primary">New</button>
         </a>
     </h4>
@@ -138,9 +156,14 @@
         <tr>
             <th>#</th>
             <th>Image</th>
-            <th>Story title</th>
-            <th>Description</th>
-            <th>Date</th>
+            <th>Title</th>
+            <th>Name</th>
+            <th>About</th>
+            <th>Icon</th>
+            <th>Twitter link</th>
+            <th>Facebook link</th>
+            <th>Linkedin link</th>
+            <th>Instagram link</th>
             <th>List order</th>
             <th>Action</th>
         </tr>
@@ -158,19 +181,34 @@
                         <?= esc($row->title) ?>
                     </td>
                     <td>
-                        <?= esc($row->description) ?>
+                        <?= esc($row->name) ?>
                     </td>
                     <td>
-                        <?= get_date($row->date) ?>
+                        <?= esc($row->about) ?>
+                    </td>
+                    <td>
+                        <i class="fs-1 fa fa-<?= esc($row->icon) ?>"></i>
+                    </td>
+                    <td>
+                        <?= esc($row->twitter_link) ?>
+                    </td>
+                    <td>
+                        <?= esc($row->facebook_link) ?>
+                    </td>
+                    <td>
+                        <?= esc($row->linkedin_link) ?>
+                    </td>
+                    <td>
+                        <?= esc($row->instagram_link) ?>
                     </td>
                     <td>
                         <?= esc($row->list_order) ?>
                     </td>
                     <td>
-                        <a href="<?= ROOT ?>/admin/story/edit/<?= $row->id ?>">
+                        <a href="<?= ROOT ?>/admin/about/edit/<?= $row->id ?>">
                             <button class="btn btn-primary">Edit</button>
                         </a>
-                        <a href="<?= ROOT ?>/admin/story/delete/<?= $row->id ?>">
+                        <a href="<?= ROOT ?>/admin/about/delete/<?= $row->id ?>">
                             <button class="btn btn-danger">Delete</button>
                         </a>
                     </td>

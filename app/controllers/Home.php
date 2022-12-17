@@ -21,6 +21,10 @@ class Home
         $story->order_type = "ASC";
         $data["stories"] = $story->findAll();
 
+        $about = new About_model;
+        $about->order_type = "ASC";
+        $data["about"] = $about->findAll();
+
         $this->view("home", $data);
     }
 }

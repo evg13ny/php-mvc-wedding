@@ -298,4 +298,77 @@ class Admin
 
         $this->view("admin/story", $data);
     }
+
+    public function about($action = null, $id = null)
+    {
+        $user = new User();
+        $about = new About_model;
+
+        $folder = "uploads/about/";
+        if (!file_exists($folder)) {
+            mkdir($folder, 0777, true);
+        }
+
+        // $about->create_table();
+
+        if (!$user->logged_in()) redirect("login");
+
+        $data["action"] = $action;
+        $data["rows"] = $about->findAll();
+
+        if ($action == "add") {
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                if ($about->validate($_FILES, $_POST)) {
+                    $destination = $folder . time() . $_FILES["image"]["name"];
+                    move_uploaded_file($_FILES["image"]["tmp_name"], $destination);
+
+                    $image_class = new Image;
+                    $image_class->resize($destination);
+
+                    $_POST["image"] = $destination;
+                    $about->insert($_POST);
+                    redirect("admin/about");
+                }
+            }
+        } elseif ($action == "edit") {
+            $data["row"] = $about->first(["id" => $id]);
+
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                if ($about->validate($_FILES, $_POST, $id)) {
+                    if (!empty($_FILES["image"]["name"])) {
+                        $destination = $folder . time() . $_FILES["image"]["name"];
+                        move_uploaded_file($_FILES["image"]["tmp_name"], $destination);
+
+                        $image_class = new Image;
+                        $image_class->resize($destination);
+
+                        $_POST["image"] = $destination;
+
+                        if (file_exists($data["row"]->image)) {
+                            unlink($data["row"]->image);
+                        }
+                    }
+
+                    $about->update($id, $_POST);
+                    redirect("admin/about");
+                }
+            }
+        } elseif ($action == "delete") {
+            $data["row"] = $about->first(["id" => $id]);
+
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                $about->delete($id);
+
+                if (file_exists($data["row"]->image)) {
+                    unlink($data["row"]->image);
+                }
+
+                redirect("admin/about");
+            }
+        }
+
+        $data["errors"] = $about->errors;
+
+        $this->view("admin/about", $data);
+    }
 }
