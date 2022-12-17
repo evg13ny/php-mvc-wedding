@@ -17,6 +17,10 @@ class Home
         $family->order_column = "list_order";
         $data["family"] = $family->findAll();
 
+        $story = new Story_model;
+        $story->order_type = "ASC";
+        $data["stories"] = $story->findAll();
+
         $this->view("home", $data);
     }
 }

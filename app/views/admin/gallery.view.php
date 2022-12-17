@@ -76,6 +76,9 @@
 
         <?php if (!empty($row)) : ?>
             <form action="" method="post">
+
+                <div class="alert alert-danger text-center mb-3">Are you sure you want to delete this record?</div>
+
                 <label>
                     <input type="file" name="image" class="d-none" onchange="display_image(this.files[0], event)">
                     <img src="<?= get_image($row->image) ?>" style="width: 250px; height: 250px; object-fit: cover; cursor: pointer;">

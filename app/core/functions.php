@@ -44,3 +44,8 @@ function get_image($filename = "")
 
     return ROOT . "/assets/img/placeholder.jpg";
 }
+
+function get_date($date)
+{
+    return date("jS M, Y", strtotime($date));
+}

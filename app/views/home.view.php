@@ -186,54 +186,40 @@
                 <i class="far fa-heart text-dark"></i>
             </div>
             <div class="container timeline position-relative p-0">
-                <div class="row">
-                    <div class="col-md-6 text-center text-md-right">
-                        <img class="img-fluid mr-md-3" src="<?= ROOT ?>/assets/img/story-1.jpg" alt="">
-                    </div>
-                    <div class="col-md-6 text-center text-md-left">
-                        <div class="h-100 d-flex flex-column justify-content-center bg-secondary p-4 ml-md-3">
-                            <h4 class="mb-2">First Meet</h4>
-                            <p class="text-uppercase mb-2">01 Jan 2050</p>
-                            <p class="m-0">Lorem elitr magna stet rebum dolores sed. Est stet labore est lorem lorem at amet sea, eos tempor rebum, labore amet ipsum sea lorem, stet rebum eirmod amet. Kasd clita kasd stet amet est dolor elitr.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6 text-center text-md-right">
-                        <div class="h-100 d-flex flex-column justify-content-center bg-secondary p-4 mr-md-3">
-                            <h4 class="mb-2">First Date</h4>
-                            <p class="text-uppercase mb-2">01 Jan 2050</p>
-                            <p class="m-0">Lorem elitr magna stet rebum dolores sed. Est stet labore est lorem lorem at amet sea, eos tempor rebum, labore amet ipsum sea lorem, stet rebum eirmod amet. Kasd clita kasd stet amet est dolor elitr.</p>
-                        </div>
-                    </div>
-                    <div class="col-md-6 text-center text-md-left">
-                        <img class="img-fluid ml-md-3" src="<?= ROOT ?>/assets/img/story-2.jpg" alt="">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6 text-center text-md-right">
-                        <img class="img-fluid mr-md-3" src="<?= ROOT ?>/assets/img/story-3.jpg" alt="">
-                    </div>
-                    <div class="col-md-6 text-center text-md-left">
-                        <div class="h-100 d-flex flex-column justify-content-center bg-secondary p-4 ml-md-3">
-                            <h4 class="mb-2">Proposal</h4>
-                            <p class="text-uppercase mb-2">01 Jan 2050</p>
-                            <p class="m-0">Lorem elitr magna stet rebum dolores sed. Est stet labore est lorem lorem at amet sea, eos tempor rebum, labore amet ipsum sea lorem, stet rebum eirmod amet. Kasd clita kasd stet amet est dolor elitr.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6 text-center text-md-right">
-                        <div class="h-100 d-flex flex-column justify-content-center bg-secondary p-4 mr-md-3">
-                            <h4 class="mb-2">Enagagement</h4>
-                            <p class="text-uppercase mb-2">01 Jan 2050</p>
-                            <p class="m-0">Lorem elitr magna stet rebum dolores sed. Est stet labore est lorem lorem at amet sea, eos tempor rebum, labore amet ipsum sea lorem, stet rebum eirmod amet. Kasd clita kasd stet amet est dolor elitr.</p>
-                        </div>
-                    </div>
-                    <div class="col-md-6 text-center text-md-left">
-                        <img class="img-fluid ml-md-3" src="<?= ROOT ?>/assets/img/story-4.jpg" alt="">
-                    </div>
-                </div>
+
+                <?php if (!empty($stories)) : $num = 0; ?>
+                    <?php foreach ($stories as $row) : $num++; ?>
+                        <?php if ($num % 2) :  ?>
+                            <div class="row">
+                                <div class="col-md-6 text-center text-md-right">
+                                    <img class="img-fluid mr-md-3" src="<?= get_image($row->image) ?>" style="max-width: 400px; max-height: 400px; object-fit: cover" alt="">
+                                </div>
+                                <div class="col-md-6 text-center text-md-left">
+                                    <div class="h-100 d-flex flex-column justify-content-center bg-secondary p-4 ml-md-3">
+                                        <h4 class="mb-2"><?= esc($row->title) ?></h4>
+                                        <p class="text-uppercase mb-2"><?= get_date($row->date) ?></p>
+                                        <p class="m-0"><?= esc($row->description) ?></p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        <?php else : ?>
+                            <div class="row">
+                                <div class="col-md-6 text-center text-md-right">
+                                    <div class="h-100 d-flex flex-column justify-content-center bg-secondary p-4 mr-md-3">
+                                        <h4 class="mb-2"><?= esc($row->title) ?></h4>
+                                        <p class="text-uppercase mb-2"><?= get_date($row->date) ?></p>
+                                        <p class="m-0"><?= esc($row->description) ?></p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 text-center text-md-left">
+                                    <img class="img-fluid ml-md-3" src="<?= get_image($row->image) ?>" style="max-width: 400px; max-height: 400px; object-fit: cover" alt="">
+                                </div>
+                            </div>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+
             </div>
         </div>
     </div>

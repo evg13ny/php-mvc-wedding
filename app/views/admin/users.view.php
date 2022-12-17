@@ -67,6 +67,9 @@
 
         <?php if (!empty($row)) : ?>
             <form action="" method="post">
+
+                <div class="alert alert-danger text-center mb-3">Are you sure you want to delete this record?</div>
+
                 <div class="form-control mt-3"><?= old_value("username", $row->username) ?></div>
                 <div class="form-control mt-3"><?= old_value("email", $row->email) ?></div>
 
