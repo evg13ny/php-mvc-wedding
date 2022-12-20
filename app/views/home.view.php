@@ -69,9 +69,9 @@
                     <img class="position-absolute w-100 h-100" src="<?= ROOT ?>/assets/img/carousel-1.jpg" style="object-fit: cover;">
                     <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                         <div class="p-3" style="max-width: 900px;">
-                            <h1 class="display-1 font-secondary text-white mt-n3 mb-md-4">Jack & Rose</h1>
+                            <h1 class="display-1 font-secondary text-white mt-n3 mb-md-4"><?= APP_NAME ?></h1>
                             <div class="d-inline-block border-top border-bottom border-light py-3 px-4">
-                                <h3 class="text-uppercase font-weight-normal text-white m-0" style="letter-spacing: 2px;">We're getting married</h3>
+                                <h3 class="text-uppercase font-weight-normal text-white m-0" style="letter-spacing: 2px;"><?= APP_DESC ?></h3>
                             </div>
                             <button type="button" class="btn-play mx-auto" data-toggle="modal" data-src="https://www.youtube.com/embed/DWRcNpR6Kdc" data-target="#videoModal">
                                 <span></span>
@@ -83,9 +83,9 @@
                     <img class="position-absolute w-100 h-100" src="<?= ROOT ?>/assets/img/carousel-2.jpg" style="object-fit: cover;">
                     <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                         <div class="p-3" style="max-width: 900px;">
-                            <h1 class="display-1 font-secondary text-white mt-n3 mb-md-4">Jack & Rose</h1>
+                            <h1 class="display-1 font-secondary text-white mt-n3 mb-md-4"><?= APP_NAME ?></h1>
                             <div class="d-inline-block border-top border-bottom border-light py-3 px-4">
-                                <h3 class="text-uppercase font-weight-normal text-white m-0" style="letter-spacing: 2px;">We're getting married</h3>
+                                <h3 class="text-uppercase font-weight-normal text-white m-0" style="letter-spacing: 2px;"><?= APP_DESC ?></h3>
                             </div>
                             <button type="button" class="btn-play mx-auto" data-toggle="modal" data-src="https://www.youtube.com/embed/DWRcNpR6Kdc" data-target="#videoModal">
                                 <span></span>
@@ -354,19 +354,19 @@
             <div class="row justify-content-center">
                 <div class="col-lg-8">
                     <div class="text-center">
-                        <form>
+                        <form method="POST" onsubmit="submit_form(event)">
                             <div class="form-row">
                                 <div class="form-group col-sm-6">
-                                    <input type="text" class="form-control bg-secondary border-0 py-4 px-3" placeholder="Your Name" />
+                                    <input name="name" type="text" class="form-control bg-secondary border-0 py-4 px-3" placeholder="Your Name" required />
                                 </div>
                                 <div class="form-group col-sm-6">
-                                    <input type="email" class="form-control bg-secondary border-0 py-4 px-3" placeholder="Your Email" />
+                                    <input name="email" type="email" class="form-control bg-secondary border-0 py-4 px-3" placeholder="Your Email" required />
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-sm-6">
-                                    <select class="form-control bg-secondary border-0" style="height: 52px;">
-                                        <option>Number of Guest</option>
+                                    <select name="guests" class="form-control bg-secondary border-0" style="height: 52px;">
+                                        <option value="1">Number of Guest</option>
                                         <option>1</option>
                                         <option>2</option>
                                         <option>3</option>
@@ -374,7 +374,7 @@
                                     </select>
                                 </div>
                                 <div class="form-group col-sm-6">
-                                    <select class="form-control bg-secondary border-0" style="height: 52px;">
+                                    <select name="attending" class="form-control bg-secondary border-0" style="height: 52px;">
                                         <option>I'm Attending</option>
                                         <option>All Events</option>
                                         <option>Wedding Party</option>
@@ -382,7 +382,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <textarea class="form-control bg-secondary border-0 py-2 px-3" rows="5" placeholder="Message" required="required"></textarea>
+                                <textarea name="message" class="form-control bg-secondary border-0 py-2 px-3" rows="5" placeholder="Message" required="required"></textarea>
                             </div>
                             <div>
                                 <button class="btn btn-primary font-weight-bold py-3 px-5" type="submit">Submit</button>
@@ -442,5 +442,36 @@
     <!-- Template Javascript -->
     <script src="<?= ROOT ?>/assets/js/main.js"></script>
 </body>
+
+<script>
+    function submit_form(e) {
+        e.preventDefault()
+
+        let ajax = new XMLHttpRequest()
+
+        ajax.addEventListener("readystatechange", function() {
+            if (ajax.readyState === 4 && ajax.status === 200) {
+                let data = JSON.parse(ajax.responseText)
+
+                if (typeof data === "object") {
+                    if (!data.success) {
+                        for (key in data.errors) {
+                            alert(data.errors[key])
+                        }
+                    } else {
+                        alert(data.message)
+                        window.location.reload()
+                    }
+                } else {
+                    // console.log(ajax.responseText)
+                }
+            }
+        })
+
+        let myForm = new FormData(e.currentTarget)
+        ajax.open("post", "<?= ROOT ?>/ajax", true)
+        ajax.send(myForm)
+    }
+</script>
 
 </html>
