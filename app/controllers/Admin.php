@@ -12,7 +12,11 @@ class Admin
 
         if (!$user->logged_in()) redirect("login");
 
-        $this->view("admin/dashboard");
+        $data["total_users"] = $user->get_row("SELECT COUNT(*) AS total FROM users");
+        $data["total_images"] = $user->get_row("SELECT COUNT(*) AS total FROM gallery");
+        $data["total_rsvps"] = $user->get_row("SELECT COUNT(*) AS total FROM rsvp");
+
+        $this->view("admin/dashboard", $data);
     }
 
     public function users($action = null, $id = null)
