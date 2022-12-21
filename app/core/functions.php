@@ -23,6 +23,19 @@ function old_value($key, $default = "")
     return empty($_POST[$key]) ? $default : $_POST[$key];
 }
 
+function old_select($key, $value, $default = "")
+{
+    if (!empty($_POST[$key]) && $_POST[$key] == $value) {
+        return " selected ";
+    }
+
+    if (!empty($default) && $default == $value) {
+        return " selected ";
+    }
+
+    return "";
+}
+
 function user($key = "")
 {
     if (!empty($_SESSION["USER"])) {

@@ -396,4 +396,77 @@ class Admin
 
         $this->view("admin/rsvp", $data);
     }
+
+    public function settings($action = null, $id = null)
+    {
+        $user = new User();
+        $settings = new Settings_model;
+
+        $folder = "uploads/settings/";
+        if (!file_exists($folder)) {
+            mkdir($folder, 0777, true);
+        }
+
+        // $settings->create_table();
+
+        if (!$user->logged_in()) redirect("login");
+
+        $data["action"] = $action;
+        $data["rows"] = $settings->findAll();
+
+        if ($action == "add") {
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                if ($settings->validate($_FILES, $_POST)) {
+                    $destination = $folder . time() . $_FILES["image"]["name"];
+                    move_uploaded_file($_FILES["image"]["tmp_name"], $destination);
+
+                    $image_class = new Image;
+                    $image_class->resize($destination);
+
+                    $_POST["image"] = $destination;
+                    $settings->insert($_POST);
+                    redirect("admin/settings");
+                }
+            }
+        } elseif ($action == "edit") {
+            $data["row"] = $settings->first(["id" => $id]);
+
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                if ($settings->validate($_FILES, $_POST, $id)) {
+                    if (!empty($_FILES["image"]["name"])) {
+                        $destination = $folder . time() . $_FILES["image"]["name"];
+                        move_uploaded_file($_FILES["image"]["tmp_name"], $destination);
+
+                        $image_class = new Image;
+                        $image_class->resize($destination);
+
+                        $_POST["value"] = $destination;
+
+                        if (file_exists($data["row"]->value)) {
+                            unlink($data["row"]->value);
+                        }
+                    }
+
+                    $settings->update($id, $_POST);
+                    redirect("admin/settings");
+                }
+            }
+        } elseif ($action == "delete") {
+            $data["row"] = $settings->first(["id" => $id]);
+
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                $settings->delete($id);
+
+                if (file_exists($data["row"]->image)) {
+                    unlink($data["row"]->image);
+                }
+
+                redirect("admin/settings");
+            }
+        }
+
+        $data["errors"] = $settings->errors;
+
+        $this->view("admin/settings", $data);
+    }
 }

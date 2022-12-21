@@ -35,7 +35,7 @@
     <!-- Navbar Start -->
     <nav class="navbar fixed-top shadow-sm navbar-expand-lg bg-dark navbar-dark py-3 py-lg-0 px-lg-5">
         <a href="index.html" class="navbar-brand d-block d-lg-none">
-            <h1 class="font-secondary text-white mb-n2">Jack <span class="text-primary">&</span> Rose</h1>
+            <h1 class="font-secondary text-white mb-n2"><?= $SETTINGS["Groom"] ?? "Unknown" ?> <span class="text-primary">&</span> <?= $SETTINGS["Bride"] ?? "Unknown" ?></h1>
         </a>
         <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
             <span class="navbar-toggler-icon"></span>
@@ -48,7 +48,7 @@
                 <a href="#gallery" class="nav-item nav-link">Gallery</a>
             </div>
             <a href="index.html" class="navbar-brand mx-5 d-none d-lg-block">
-                <h1 class="font-secondary text-white mb-n2">Jack <span class="text-primary">&</span> Rose</h1>
+                <h1 class="font-secondary text-white mb-n2"><?= $SETTINGS["Groom"] ?? "Unknown" ?> <span class="text-primary">&</span> <?= $SETTINGS["Bride"] ?? "Unknown" ?></h1>
             </a>
             <div class="navbar-nav mr-auto py-0">
                 <a href="#family" class="nav-item nav-link">Family</a>
@@ -66,7 +66,7 @@
         <div id="header-carousel" class="carousel slide carousel-fade" data-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item position-relative active" style="height: 100vh; min-height: 400px;">
-                    <img class="position-absolute w-100 h-100" src="<?= ROOT ?>/assets/img/carousel-1.jpg" style="object-fit: cover;">
+                    <img class="position-absolute w-100 h-100" src="<?= get_image($SETTINGS["Carousel 1"] ?? "") ?>" style="object-fit: cover;">
                     <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                         <div class="p-3" style="max-width: 900px;">
                             <h1 class="display-1 font-secondary text-white mt-n3 mb-md-4"><?= APP_NAME ?></h1>
@@ -80,7 +80,7 @@
                     </div>
                 </div>
                 <div class="carousel-item position-relative" style="height: 100vh; min-height: 400px;">
-                    <img class="position-absolute w-100 h-100" src="<?= ROOT ?>/assets/img/carousel-2.jpg" style="object-fit: cover;">
+                    <img class="position-absolute w-100 h-100" src="<?= get_image($SETTINGS["Carousel 2"] ?? "") ?>" style="object-fit: cover;">
                     <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                         <div class="p-3" style="max-width: 900px;">
                             <h1 class="display-1 font-secondary text-white mt-n3 mb-md-4"><?= APP_NAME ?></h1>
@@ -416,7 +416,7 @@
                 <span class="px-3">|</span>
                 <a class="text-white" href="<?= ROOT ?>/admin">Admin</a>
             </div>
-            <p class="m-0">&copy; <a class="text-primary" href="#">Domain Name</a>. Designed by <a class="text-primary" href="https://htmlcodex.com">HTML Codex</a>
+            <p class="m-0">&copy; <a class="text-primary" href="#">Domain Name</a>. Designed by <a class="text-primary" href="https://htmlcodex.com"><?= $SETTINGS["Designed by"] ?? "Unknown" ?></a>
             </p>
         </div>
     </div>

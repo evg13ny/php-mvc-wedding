@@ -25,6 +25,16 @@ class Home
         $about->order_type = "ASC";
         $data["about"] = $about->findAll();
 
+        $settings = new Settings_model;
+        $data["settings"] = $settings->findAll();
+        $data["SETTINGS"] = [];
+
+        if ($data["settings"]) {
+            foreach ($data["settings"] as $setting_row) {
+                $data["SETTINGS"][$setting_row->setting] = $setting_row->value;
+            }
+        }
+
         $this->view("home", $data);
     }
 }

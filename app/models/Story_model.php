@@ -30,13 +30,13 @@ class Story_model
                 $this->errors["image"] = "An image is required";
             } else {
                 if (!in_array($fles_data["image"]["type"], $allowed_type)) {
-                    $this->errors = "Wrong image format. Please select an image from one of the next formats: " . implode(", ", $allowed_type);
+                    $this->errors["image"] = "Wrong image format. Please select an image from one of the next formats: " . implode(", ", $allowed_type);
                 }
             }
         } else {
             if (!empty($fles_data["image"]["name"])) {
                 if (!in_array($fles_data["image"]["type"], $allowed_type)) {
-                    $this->errors = "Wrong image format. Please select an image from one of the next formats: " . implode(", ", $allowed_type);
+                    $this->errors["image"] = "Wrong image format. Please select an image from one of the next formats: " . implode(", ", $allowed_type);
                 }
             }
         }
