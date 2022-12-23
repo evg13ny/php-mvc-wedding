@@ -9,10 +9,6 @@
     <!-- Favicon -->
     <link href="<?= ROOT ?>/assets/img/favicon.ico" rel="icon">
 
-    <!-- Google Web Fonts
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">  -->
-
     <!-- Font Awesome -->
     <link href="<?= ROOT ?>/assets/fontawesome/css/all.min.css" rel="stylesheet">
 
@@ -59,7 +55,6 @@
         </div>
     </nav>
     <!-- Navbar End -->
-
 
     <!-- Carousel Start -->
     <div class="container-fluid p-0 mb-5 pb-5" id="home">
